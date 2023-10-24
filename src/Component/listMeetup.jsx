@@ -1,17 +1,32 @@
-import React from "react";
+import { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-function listMeetup({ list }) {
+import FavoritesContext from "../store/Favorate-Context";
+
+
+function ListMeetup({ list }) {
+  const favoriteCtx=useContext(FavoritesContext)
+  const isFavorite=favoriteCtx.isFavorite(list.id)
   const cardStyle = {
     float: "left",
     marginRight: "10px",
     width: "18rem",
   };
   const accessFavorate = () => {
-    console.log("hi");
-  };
+    if(isFavorite){
+       favoriteCtx.removeFav(list.id)
+    }else{
+      favoriteCtx.addFavorite({
+        id:list.id,
+        Image:list.Image,
+        description:list.description,
+       title:list.title,
+       address:list.address
+      })
+    }
+  }
   return (
-    <>
+    <div className="container">
       <Card style={cardStyle} key={list.id}>
         <Card.Img variant="top" src={list.Image} />
         <Card.Body>
@@ -22,12 +37,12 @@ function listMeetup({ list }) {
             {list.address}
           </Card.Text>
           <Button variant="primary" onClick={accessFavorate}>
-            To favorates
+            {isFavorite?'Remove Fav':'Add to Favorite'}
           </Button>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 
-export default listMeetup;
+export default ListMeetup;

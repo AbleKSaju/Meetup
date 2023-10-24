@@ -1,5 +1,4 @@
 import "./App.css";
-// import List from "./Components/List";
 import { Route, Routes } from "react-router-dom";
 import AllMeetup from "./Pages/AllMeetup";
 import AddMeetup from "./Pages/AddMeetup";
@@ -9,7 +8,6 @@ import MainNavigation from "./Component/layout/MainNavigation";
 function App() {
   return (
     <div className="App">
-      {/* <List/> */}
       <MainNavigation/>
       <Routes>
         <Route path="/" element={<AllMeetup />}></Route>
