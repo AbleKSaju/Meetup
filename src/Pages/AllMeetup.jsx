@@ -29,6 +29,7 @@ function AllMeetup() {
   }
   return (
     <>
+    <h1 className="mb-5 bt-3">Meetups</h1>
       <div className="container">
         {loadingMeetups.map((val) => (
           <ListMeetup key={val.id} list={val} />
